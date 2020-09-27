@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "363093232622",
+    "firebase_url": "https://snimoz-ee2bf.firebaseio.com",
+    "project_id": "snimoz-ee2bf",
+    "storage_bucket": "snimoz-ee2bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:363093232622:android:64e6bd52bd687cd11ddcff",
+        "android_client_info": {
+          "package_name": "com.cyberon.snimoz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "363093232622-okma8qanir3khv77d1j8vbgfhhd33jfu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cyberon.snimoz",
+            "certificate_hash": "5e9865f2d788df4481f9a71cf2e00107a77c7c27"
+          }
+        },
+        {
+          "client_id": "363093232622-ed9pk5sj7a1libqmoma3eh142lef4qki.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOYO7KsWAkXXyFZ4JMkf277UrXOnpkawg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "363093232622-ed9pk5sj7a1libqmoma3eh142lef4qki.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
