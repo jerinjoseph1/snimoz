@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:snimoz/data/cached_data.dart';
+import 'package:snimoz/data/vehicle_data.dart';
 import 'package:snimoz/data/user_data.dart';
 import 'package:snimoz/data/wallet_data.dart';
 import 'package:snimoz/screens/bottom_nav_bar_screen.dart';
