@@ -20,12 +20,14 @@ class _WalletPageState extends State<WalletPage> {
   @override
   void initState() {
     super.initState();
-    fetchTransactions();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      fetchTransactions();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final WalletData walletData = Provider.of(context);
+    final WalletData walletData = Provider.of<WalletData>(context);
     return Scaffold(
       body: Container(
         width: double.infinity,

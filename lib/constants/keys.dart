@@ -14,3 +14,8 @@ const String REGISTRATION_NAME = "registrationName";
 const String USER_NAME = "name";
 const String USER_ADDRESS = "address";
 const String USER_PHONE_NUMBER = "phoneNumber";
+
+const String LICENCE_NAME = "licenceName";
+const String LICENCE_NUMBER = "licenceNumber";
+const String LICENCE_DOB = "licenceDOB";
+const String LICENCE_VALIDITY = "licenceValidity";
