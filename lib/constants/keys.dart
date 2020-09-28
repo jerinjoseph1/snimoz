@@ -19,3 +19,4 @@ const String LICENCE_NAME = "licenceName";
 const String LICENCE_NUMBER = "licenceNumber";
 const String LICENCE_DOB = "licenceDOB";
 const String LICENCE_VALIDITY = "licenceValidity";
+const String LICENCE_CATEGORIES = "licenceCategories";

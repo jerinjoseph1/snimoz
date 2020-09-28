@@ -5,7 +5,6 @@ import 'package:snimoz/data/user_data.dart';
 import 'package:snimoz/pages/home_page.dart';
 import 'package:snimoz/pages/alerts_page.dart';
 import 'package:snimoz/pages/journeys_page.dart';
-import 'package:snimoz/pages/reports_page.dart';
 
 class BottomNavBarScreen extends StatefulWidget {
   @override
@@ -14,7 +13,11 @@ class BottomNavBarScreen extends StatefulWidget {
 
 class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
   int currentTabIndex = 0;
-  List<Widget> tabs = [HomePage(), JourneysPage(), ReportsPage(), AlertsPage()];
+  List<Widget> tabs = [
+    HomePage(),
+    JourneysPage(),
+    AlertsPage(),
+  ];
 
   onTapped(int index) {
     setState(() {
@@ -63,10 +66,6 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
           FFNavigationBarItem(
             iconData: Icons.map,
             label: 'Journeys',
-          ),
-          FFNavigationBarItem(
-            iconData: Icons.report_problem,
-            label: 'Reports',
           ),
           FFNavigationBarItem(
             iconData: Icons.notifications,

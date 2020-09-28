@@ -187,7 +187,7 @@ class _AddVehiclePageState extends State<AddVehiclePage> {
                             children: <TextSpan>[
                               TextSpan(
                                 text: vehicleData.vehicles[index].number,
-                                style: GoogleFonts.lemon(
+                                style: GoogleFonts.pollerOne(
                                   color: Colors.indigo[50],
                                   fontSize: 13,
                                 ),

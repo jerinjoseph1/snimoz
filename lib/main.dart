@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:snimoz/data/journey_data.dart';
 import 'package:snimoz/data/licence_data.dart';
 import 'package:snimoz/data/vehicle_data.dart';
 import 'package:snimoz/data/user_data.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<WalletData>(create: (_) => WalletData()),
         ChangeNotifierProvider<VehicleData>(create: (_) => VehicleData()),
         ChangeNotifierProvider<LicenceData>(create: (_) => LicenceData()),
+        ChangeNotifierProvider<JourneyData>(create: (_) => JourneyData()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

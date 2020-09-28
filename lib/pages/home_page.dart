@@ -5,7 +5,7 @@ import 'package:snimoz/animation/animation.dart';
 import 'package:snimoz/data/user_data.dart';
 import 'package:snimoz/pages/add_vehicle_page.dart';
 import 'package:snimoz/pages/start_journey_page.dart';
-import 'package:snimoz/pages/verify_licence_page.dart';
+import 'package:snimoz/pages/licence_page.dart';
 import 'package:snimoz/pages/wallet_page.dart';
 import 'package:snimoz/services/auth_service.dart';
 

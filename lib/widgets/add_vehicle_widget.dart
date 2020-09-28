@@ -105,7 +105,7 @@ class _AddVehicleSheetState extends State<AddVehicleSheet> {
                           borderSide: BorderSide(),
                         ),
                         icon: Icon(
-                          Icons.sms,
+                          Icons.person_outline,
                           size: 20,
                         ),
                         labelText: 'Name in RC book',

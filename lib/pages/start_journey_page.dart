@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+import 'package:snimoz/animation/animation.dart';
+import 'package:snimoz/data/journey_data.dart';
 
 class StartJourneyPage extends StatefulWidget {
   @override
@@ -9,6 +12,8 @@ class StartJourneyPage extends StatefulWidget {
 class _StartJourneyPageState extends State<StartJourneyPage> {
   @override
   Widget build(BuildContext context) {
+    final JourneyData journeyData = Provider.of<JourneyData>(context);
+
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -28,6 +33,10 @@ class _StartJourneyPageState extends State<StartJourneyPage> {
             child: Column(
               children: [
                 appBar(context),
+                FadeAnimation(
+                  1.4,
+                  dashBoard(journeyData),
+                ),
               ],
             ),
           ),
@@ -61,6 +70,60 @@ class _StartJourneyPageState extends State<StartJourneyPage> {
             },
           ),
         ],
+      ),
+    );
+  }
+
+  Widget dashBoard(JourneyData journeyData) {
+    return Container(
+      margin: const EdgeInsets.all(8.0),
+      width: double.infinity,
+      child: Card(
+        elevation: 3,
+        color: Colors.indigo[500],
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Click here to start a journey",
+                style: GoogleFonts.lemon(
+                  color: Colors.indigo[200],
+                  fontSize: 12,
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    RaisedButton.icon(
+                      color: Colors.indigo[800],
+                      label: Text(
+                        "Start Journey",
+                        style: GoogleFonts.lemon(
+                          color: Colors.indigo[50],
+                          fontSize: 16,
+                        ),
+                      ),
+                      icon: Icon(
+                        Icons.directions_car,
+                        color: Colors.amber,
+                      ),
+                      onPressed: () {
+                        // addLicenceSheet(context);
+                      },
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
