@@ -15,6 +15,8 @@ class VehicleData extends ChangeNotifier {
 
   List<VehicleModel> get vehicles => _vehicles;
 
+  bool get hasVehicle => vehicles != null && vehicles.isNotEmpty;
+
   Future<void> fetchVehicles() async {
     final dbHelper = DatabaseHelper.instance;
     final data = await dbHelper.queryAllVehicle();

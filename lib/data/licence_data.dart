@@ -15,6 +15,8 @@ class LicenceData extends ChangeNotifier {
 
   LicenceModel get myLicence => _myLicence;
 
+  bool get hasLicence => myLicence.number != null && myLicence.number != "";
+
   Future<void> storeLicence() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(LICENCE_NAME, myLicence.name);

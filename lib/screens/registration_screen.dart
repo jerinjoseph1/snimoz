@@ -261,6 +261,7 @@ class RegistrationScreen extends StatelessWidget {
                                 default:
                                   if (_regFormKey.currentState.validate()) {
                                     verifyPhone(userData);
+                                    userData.storeUserData();
                                   }
                                   break;
                               }

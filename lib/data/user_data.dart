@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:snimoz/constants/keys.dart';
 import 'package:snimoz/models/user_model.dart';
-import 'package:snimoz/utils/common_util.dart';
 
 class UserData extends ChangeNotifier {
   bool _codeSent = false;
