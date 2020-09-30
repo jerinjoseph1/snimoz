@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AlertsPage extends StatefulWidget {
   @override
@@ -27,7 +28,17 @@ class _AlertsPageState extends State<AlertsPage> {
             children: [
               SingleChildScrollView(
                 child: Column(
-                  children: [],
+                  children: [
+                    appBar(context),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Center(
+                        child: Text(
+                      "No Alerts Found",
+                      style: TextStyle(color: Colors.indigo[100]),
+                    ))
+                  ],
                 ),
               ),
             ],
@@ -35,6 +46,26 @@ class _AlertsPageState extends State<AlertsPage> {
         ),
       ),
       // floatingActionButton: FancyFab()
+    );
+  }
+
+  Widget appBar(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(10),
+      width: double.infinity,
+      color: Colors.indigo[900],
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "Alerts",
+            style: GoogleFonts.pollerOne(
+              color: Colors.indigo[50],
+              fontSize: 22,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

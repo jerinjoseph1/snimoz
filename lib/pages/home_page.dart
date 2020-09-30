@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "My Journey",
+            "Home",
             style: GoogleFonts.pollerOne(
               color: Colors.indigo[50],
               fontSize: 22,

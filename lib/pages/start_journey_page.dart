@@ -23,9 +23,10 @@ class StartJourneyPage extends StatefulWidget {
 
 class _StartJourneyPageState extends State<StartJourneyPage> {
   final _startJourneyFormKey = GlobalKey<FormState>();
-  // StreamSubscription<Position> positionStream;
+  StreamSubscription<Position> positionStream;
   StreamSubscription periodicSub;
-  StreamSubscription periodic;
+
+  // StreamSubscription periodic;
 
   monitorSpeed() async {
     final JourneyData journeyData =
@@ -43,22 +44,11 @@ class _StartJourneyPageState extends State<StartJourneyPage> {
         ..removeRange(0, journeyData.speedList.length - 1)
         ..add(0.0);
 
-      periodic = Stream.periodic(const Duration(seconds: 1))
-          .take(24 * 60 * 360)
-          .listen((_) async {
-        Position position = await getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.bestForNavigation);
-        if (position != null) {
-          if (position.speed.runtimeType == double)
-            journeyData.speedList.add(position.speed * 1.60934);
-          if ((position.speed * 1.60934) > 20.0 && journeyData.showEndButton)
-            journeyData.pushLocationViolation(
-                userData.userModel, licenceData.myLicence);
-          setState(() {});
-        }
-      });
-
-      // positionStream = getPositionStream().listen((Position position) {
+      // periodic = Stream.periodic(const Duration(seconds: 1))
+      //     .take(24 * 60 * 360)
+      //     .listen((_) async {
+      //   Position position = await getCurrentPosition(
+      //       desiredAccuracy: LocationAccuracy.bestForNavigation);
       //   if (position != null) {
       //     if (position.speed.runtimeType == double)
       //       journeyData.speedList.add(position.speed * 1.60934);
@@ -68,6 +58,17 @@ class _StartJourneyPageState extends State<StartJourneyPage> {
       //     setState(() {});
       //   }
       // });
+
+      positionStream = getPositionStream().listen((Position position) {
+        if (position != null) {
+          if (position.speed.runtimeType == double)
+            journeyData.speedList.add(position.speed * 1.60934);
+          if ((position.speed * 1.60934) > 20.0 && journeyData.showEndButton)
+            journeyData.pushLocationViolation(
+                userData.userModel, licenceData.myLicence);
+          setState(() {});
+        }
+      });
       journeyData.position = await getCurrentPosition();
     } catch (e) {
       print(e);
@@ -92,8 +93,10 @@ class _StartJourneyPageState extends State<StartJourneyPage> {
         .listen((_) async {
       if (journeyData.showEndButton) {
         print('true');
-        journeyData.updateLocation();
-        // journeyData.checkRestriction(userData.userModel, licenceData.myLicence);
+        await journeyData.updateLocation();
+        await journeyData.checkRestriction(
+            userData.userModel, licenceData.myLicence);
+        if (positionStream.isPaused) positionStream.resume();
       }
     });
   }
@@ -110,9 +113,9 @@ class _StartJourneyPageState extends State<StartJourneyPage> {
 
   @override
   void dispose() {
-    // if (positionStream != null) positionStream.cancel();
+    if (positionStream != null) positionStream.cancel();
     if (periodicSub != null) periodicSub.cancel();
-    if (periodic != null) periodic.cancel();
+    // if (periodic != null) periodic.cancel();
     super.dispose();
   }
 
@@ -387,7 +390,8 @@ class _StartJourneyPageState extends State<StartJourneyPage> {
                                 journeyData.position.latitude,
                                 journeyData.position.longitude);
                             if (distanceInMeters < 1000) {
-                              await journeyData.endJourney();
+                              await journeyData.endJourney(
+                                  userData.userModel, licenceData.myLicence);
                               Navigator.pop(context);
                             } else
                               showToast("Cannot end journey");

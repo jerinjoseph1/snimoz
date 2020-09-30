@@ -6,6 +6,7 @@ import 'package:snimoz/models/licence_model.dart';
 import 'package:snimoz/models/restricted_zones_model.dart';
 import 'package:snimoz/models/user_model.dart';
 import 'package:snimoz/models/vehicle_model.dart';
+import 'package:snimoz/utils/common_util.dart';
 
 class JourneyData extends ChangeNotifier {
   String _licenceNumber = "";
@@ -18,9 +19,15 @@ class JourneyData extends ChangeNotifier {
   List<RestrictedZonesModel> _listZones = [];
   EntryExitPointModel _entryPoint;
   String _date;
+  List<Map<String, dynamic>> _journeyList = [];
 
   set vehicle(VehicleModel vehicle) {
     _vehicle = vehicle;
+    notifyListeners();
+  }
+
+  set journeyList(List<Map<String, dynamic>> journeyList) {
+    _journeyList = journeyList;
     notifyListeners();
   }
 
@@ -73,6 +80,8 @@ class JourneyData extends ChangeNotifier {
 
   List<EntryExitPointModel> get listPoints => _listPoints;
 
+  List<Map<String, dynamic>> get journeyList => _journeyList;
+
   List<RestrictedZonesModel> get listZones => _listZones;
 
   EntryExitPointModel get entryPoint => _entryPoint;
@@ -115,14 +124,26 @@ class JourneyData extends ChangeNotifier {
     }
   }
 
-  Future<void> endJourney() async {
+  Future<void> endJourney(
+      UserModel userModel, LicenceModel licenceModel) async {
     Response response;
     Dio dio = Dio();
+    for (var i in speedList) {}
+    final data = {
+      "name": licenceModel.name,
+      "mob": userModel.phoneNumber,
+      "vehicleType": vehicle.type,
+      "vehicleReg": vehicle.number,
+      "time": date,
+      "realtimeLocation": [position.latitude, position.longitude].toString(),
+    };
     try {
       response = await dio.delete(
         "https://snimoz-api.herokuapp.com/journeyDelete/" + id,
       );
       print(response.data);
+      showToast("Your journey has ended");
+      journeyList.add(data);
       showEndButton = false;
     } catch (e) {
       print(e);
@@ -233,7 +254,7 @@ class JourneyData extends ChangeNotifier {
         break;
       }
     }
-    if (!found) return;
+    // if (!found) return;
 
     String currentTime = DateTime.now().toString();
     final data = {
@@ -248,9 +269,10 @@ class JourneyData extends ChangeNotifier {
     };
     try {
       response = await dio.post(
-        "https://snimoz-api.herokuapp.com/updateRealtimeLocation",
+        "https://snimoz-api.herokuapp.com/postZoneViolation",
         data: data,
       );
+      print(response.statusCode);
       print(response.data);
     } catch (e) {
       print(e);
